@@ -1,0 +1,60 @@
+require 'rubygems'
+require 'rake'
+require 'rspec/core/rake_task'
+#gem "deep_test_pre", "=2.0"
+require 'deep_test/spec/extensions/spec_task'
+require 'deep_test/rake_tasks'
+require 'selenium/rake/server_task'
+require 'selenium/rspec/reporting/selenium_test_report_formatter'
+
+
+
+#report_formatter_path = "lib/reporting/selenium_test_report_formatter"
+
+desc("Run all tests in parallel using DeepTest.")
+RSpec::Core::RakeTask.new("tests:run_in_parallel") do |t|
+  t.files_to_run = FileList['./**/*_spec.rb']
+  t.deep_test :number_of_agents => 6
+  t.spec_opts << '--color'
+  t.spec_opts << "--require 'rubygems,#{report_formatter_path}'"
+  t.spec_opts << "--format=Selenium::RSpec::SeleniumTestReportFormatter:./tmp/test_report.html"
+  t.spec_opts << "--format=progress"
+end
+task :default => :'tests:run_in_parallel'
+#  puts Spec::Rake::SpecTask
+  #.new("tests:run_in_parallel") do |t|
+  #  t.spec_files = FileList['../spec/Delta*.rb']
+  #  t.deep_test :number_of_agents => 6
+  #  t.spec_opts << '--color'
+  #  t.spec_opts << "--require 'selenium/rspec/reporting/selenium_test_report_formatter'"
+  #  t.spec_opts << "--format=SeleniumTestReportFormatter:./test_report.html"
+  #  t.spec_opts << "--format=progress"
+  #end
+#end
+
+#task :create_report_dir do
+#  rm_f File.expand_path(File.dirname(__FILE__) + "/tmp/rspec_report")
+#  mkdir_p File.expand_path(File.dirname(__FILE__) + "/tmp/rspec_report")
+#  ENV['SELENIUM_TEST_REPORT_FILE'] = "./test_report.html" # Workaround for DeepTest reports
+#end
+#
+#desc "Check whether you installed all dependencies and you environmnet is OK."
+#task :sanity_check do
+#  require report_formatter_path
+#  STDOUT.puts <<-EOS
+
+#Congratulations, your environment is set properly.
+#
+#Run the tests in parallel with:
+#
+#   rake tests:run_in_parallel
+#
+#Or in sequence with:
+#
+#   rake tests:run_in_sequence
+#
+#  EOS
+#end
+
+#require "nokogiri"
+

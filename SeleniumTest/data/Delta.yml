@@ -1,0 +1,29 @@
+---
+paxinfo:
+  dob_day: 16
+  dob_month: March
+  dob_year: 1984
+  email: a@a.com
+  firstname: delta
+  gender: M
+  lastname: user
+  telephone: 3257383930
+  verifyemail: a@a.com
+paymentinfo:
+  address: testaddress
+  ccexpirymonth: 4
+  ccexpiryyear: 2015
+  ccfirstname: delta
+  cclastname: user
+  ccnumber: 371010000000000
+  city: Atlanta
+  postalcode: 30320
+  securitycode: 1111
+  state: GA
+searchcriteria:
+  arrivaldate: today
+  departuredate: today
+  destination: ORD
+  origin: ATL
+
+

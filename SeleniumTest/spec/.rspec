@@ -1,0 +1,4 @@
+--require 'selenium/rspec/reporting/selenium_test_report_formatter'
+--require 'selenium/rspec/spec_helper'
+--format SeleniumTestReportFormatter
+--out ./spec_test_report.html
